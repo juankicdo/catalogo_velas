@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MACF · Moments, Aura, Candles & Feelings</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --rose-pale:#f9e4ea;
+    --rose:#e6a6bb;
+    --rose-deep:#c46f8c;
+    --cream:#fffaf7;
+    --ink:#3c2c31;
+    --ink-soft:#7a6367;
+    --gold:#d9ac6e;
+    --line: rgba(196,111,140,0.28);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Jost',sans-serif;
+    font-weight:300;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.serif{
+    font-family:'Cormorant Garamond', serif;
+    font-weight:500;
+    letter-spacing:.01em;
+  }
+  .eyebrow{
+    font-family:'Jost',sans-serif;
+    font-size:.68rem;
+    letter-spacing:.32em;
+    text-transform:uppercase;
+    color:var(--rose-deep);
+  }
+  a{color:inherit;}
+  img{display:block; max-width:100%;}
+
+  .flame-divider{
+    display:flex; align-items:center; justify-content:center;
+    gap:14px; margin:0 auto; padding: 44px 0;
+    color:var(--rose-deep);
+  }
+  .flame-divider .rule{ width:52px; height:1px; background:var(--line); }
+  .flame-divider svg{ width:16px; height:16px; }
+
+  header.hero{
+    min-height:80svh;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center;
+    padding: 60px 24px;
+    position:relative;
+    background:
+      radial-gradient(ellipse at 50% 0%, var(--rose-pale) 0%, transparent 60%),
+      var(--cream);
+  }
+  .brand-ring{
+    width:132px; height:132px;
+    border:1px solid var(--rose);
+    border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    margin-bottom:28px;
+  }
+  .brand-ring svg{ width:46px; height:46px; }
+  .hero h1{
+    font-size: clamp(2.6rem, 7vw, 4.4rem);
+    letter-spacing:.14em;
+    color:var(--rose-deep);
+  }
+  .hero .tagline{
+    font-size:.98rem;
+    letter-spacing:.08em;
+    color:var(--ink-soft);
+    margin-top:10px;
+  }
+  .hero .desc{
+    max-width:480px;
+    margin-top:26px;
+    font-size:1rem;
+    color:var(--ink-soft);
+  }
+
+  section{ padding: 0 24px 100px; max-width:1160px; margin:0 auto; }
+  .section-head{ text-align:center; margin-bottom:52px; }
+  .section-head h2{ font-size:2.2rem; color:var(--ink); margin-top:10px; }
+  .section-head p{ color:var(--ink-soft); max-width:440px; margin:14px auto 0; font-size:.94rem; }
+
+  .aura-band{
+    background:linear-gradient(135deg, var(--rose-pale), var(--cream));
+    border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+    padding:64px 24px;
+    text-align:center;
+  }
+  .aura-band .serif{
+    font-size:clamp(1.4rem, 3vw, 1.9rem);
+    max-width:620px; margin:0 auto;
+    color:var(--ink); font-style:italic;
+  }
+  .aura-band .eyebrow{ display:block; margin-bottom:18px; }
+
+  .product-grid{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:32px 24px;
+  }
+  @media (max-width:980px){ .product-grid{ grid-template-columns:repeat(3,1fr);} }
+  @media (max-width:720px){ .product-grid{ grid-template-columns:repeat(2,1fr);} }
+  @media (max-width:460px){ .product-grid{ grid-template-columns:1fr;} }
+
+  .product-card{ text-align:left; }
+  .photo-slot{
+    aspect-ratio:1/1;
+    border:1px solid var(--line);
+    background:var(--rose-pale);
+    overflow:hidden; position:relative;
+  }
+  .photo-slot img{ width:100%; height:100%; object-fit:cover; display:block; }
+  .product-card .p-num{ font-size:.62rem; letter-spacing:.14em; text-transform:uppercase; color:var(--gold); margin-top:14px; }
+  .product-card h3{ font-size:1.2rem; margin-top:4px; color:var(--ink); }
+  .product-card .p-price{ font-size:.92rem; color:var(--rose-deep); margin-top:6px; font-weight:500; }
+
+  footer{
+    background:var(--ink);
+    color:var(--rose-pale);
+    text-align:center;
+    padding:76px 24px 40px;
+  }
+  footer h2{ color:#fff; font-size:2rem; }
+  footer p{ color:var(--rose-pale); opacity:.75; font-size:.9rem; max-width:420px; margin:14px auto 30px; }
+  .contact-row{ display:flex; gap:14px; justify-content:center; flex-wrap:wrap; margin-bottom:48px; }
+  .contact-btn{
+    display:flex; align-items:center; gap:8px;
+    padding:13px 24px; border:1px solid rgba(255,255,255,.28);
+    border-radius:30px; font-size:.78rem; letter-spacing:.08em; text-transform:uppercase;
+    text-decoration:none; color:#fff; transition:.2s;
+  }
+  .contact-btn:hover{ background:rgba(255,255,255,.1); border-color:#fff; }
+  .contact-btn svg{ width:15px; height:15px; }
+  footer .fine{ font-size:.68rem; letter-spacing:.12em; text-transform:uppercase; opacity:.5; }
+
+  .share-float{
+    position:fixed; right:18px; bottom:18px; z-index:50;
+  }
+  .share-float a{
+    width:44px; height:44px; border-radius:50%;
+    background:var(--rose-deep); color:#fff;
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:0 6px 18px rgba(196,111,140,.4);
+    text-decoration:none;
+  }
+  .share-float svg{ width:19px; height:19px; }
+
+  a:focus-visible, button:focus-visible{ outline:2px solid var(--rose-deep); outline-offset:3px; }
+</style>
+</head>
+<body>
+
+<!-- ==========================================================================
+  CÓMO EDITAR ESTE CATÁLOGO (léeme):
+
+  Baja hasta la sección "<script>" al final del archivo. Ahí vas a encontrar
+  una lista como esta, UNA LÍNEA POR CADA VELA:
+
+    { foto: "VELAS/1.jpg",  nombre: "Set navideño 1",  precio: "$20.000" },
+
+  - foto:   la ruta de la imagen (deben estar en una carpeta "VELAS" junto a
+            este archivo). Si tus fotos son .png en vez de .jpg, cambia la
+            terminación aquí.
+  - nombre: escribe el nombre real de cada diseño (ej: "Set Virgen María",
+            "Set Stitch", "Set Angelitos").
+  - precio: el precio de esa caja, con el formato "$20.000".
+
+  Edita el texto que está ENTRE COMILLAS, sin borrar las comillas ni las comas.
+  Guarda con Ctrl+S y recarga la página en el navegador (F5) para ver los cambios.
+============================================================================= -->
+
+<header class="hero">
+  <div class="brand-ring">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.1" style="color:var(--rose-deep)">
+      <path d="M12 2c1.2 2.4 3 4 3 6.6a3 3 0 1 1-6 0C9 6 10.8 4.4 12 2z"/>
+      <path d="M12 22c-4.5 0-8-2.3-8-6.4C4 12 6 9.5 9 8c-1 2.5-.3 4.3 1 5.2C11 12 10.7 10 12 8.5c2 1.3 3 3.6 3 6.1v.8c1.6-.8 2.5-2.2 2.5-4C21 8 18 5 12 2"/>
+    </svg>
+  </div>
+  <h1>M A C F</h1>
+  <p class="tagline">Moments · Aura · Candles & Feelings</p>
+  <p class="desc">Velas hechas para acompañar momentos, envolver espacios en aroma
+    y sostener los sentimientos que no siempre tienen palabras.</p>
+</header>
+
+<div class="aura-band">
+  <span class="eyebrow">Aura</span>
+  <p class="serif">"Una vela no solo ilumina un cuarto — cambia el aire que se respira en él."</p>
+</div>
+
+<section id="candles" style="padding-top:80px;">
+  <div class="section-head">
+    <span class="eyebrow">Candles</span>
+    <h2>Nuestra colección</h2>
+    <p>Sets de velas ideales para el Día de las Velitas y para regalar todo el año.</p>
+  </div>
+
+  <div class="product-grid" id="productGrid"></div>
+</section>
+
+<footer>
+  <span class="eyebrow" style="color:var(--rose);">Hagamos que huela a ti</span>
+  <h2 class="serif">Haz tu pedido</h2>
+  <p>Escríbenos por WhatsApp y coordinamos entrega o envío.</p>
+  <div class="contact-row">
+    <a class="contact-btn" href="https://wa.me/573104784104" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm5.7 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-3.2-.8-2.7-1.1-4.4-3.8-4.6-4-.1-.2-1.1-1.5-1.1-2.8 0-1.3.7-2 1-2.2.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5s.7 1.7.7 1.8c.1.2.1.3 0 .5-.6 1.2-1.2 1.1-.7 1.9 1 1.7 1.9 2.2 3.4 3 .3.1.5.1.6-.1.2-.2.7-.8.9-1.1.2-.3.4-.2.6-.1.2.1 1.6.8 1.9 1 .3.1.5.2.5.3.1.2.1.7-.1 1.4z"/></svg>
+      WhatsApp: 310 478 4104
+    </a>
+  </div>
+  <p class="fine">MACF — Moments, Aura, Candles & Feelings</p>
+</footer>
+
+<div class="share-float">
+  <a href="https://wa.me/573104784104" target="_blank" rel="noopener" aria-label="WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm5.7 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-3.2-.8-2.7-1.1-4.4-3.8-4.6-4-.1-.2-1.1-1.5-1.1-2.8 0-1.3.7-2 1-2.2.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5s.7 1.7.7 1.8c.1.2.1.3 0 .5-.6 1.2-1.2 1.1-.7 1.9 1 1.7 1.9 2.2 3.4 3 .3.1.5.1.6-.1.2-.2.7-.8.9-1.1.2-.3.4-.2.6-.1.2.1 1.6.8 1.9 1 .3.1.5.2.5.3.1.2.1.7-.1 1.4z"/></svg>
+  </a>
+</div>
+
+<script>
+  // ============================================================
+  // EDITA AQUÍ: una línea por cada vela (foto, nombre y precio)
+  // ============================================================
+const productos = [
+    { foto: "imagenes/1.jpeg",  nombre: "Set navideño 1",  precio: "$20.000" },
+    { foto: "imagenes/2.jpeg",  nombre: "Set navideño 2",  precio: "$20.000" },
+    { foto: "imagenes/3.jpeg",  nombre: "Set navideño 3",  precio: "$20.000" },
+    { foto: "imagenes/4.jpeg",  nombre: "Set navideño 4",  precio: "$20.000" },
+    { foto: "imagenes/5.jpeg",  nombre: "Set navideño 5",  precio: "$20.000" },
+    { foto: "imagenes/6.jpeg",  nombre: "Set navideño 6",  precio: "$20.000" },
+    { foto: "imagenes/7.jpeg",  nombre: "Set navideño 7",  precio: "$20.000" },
+    { foto: "imagenes/8.jpeg",  nombre: "Set navideño 8",  precio: "$20.000" },
+    { foto: "imagenes/9.jpeg",  nombre: "Set navideño 9",  precio: "$20.000" },
+    { foto: "imagenes/10.jpeg", nombre: "Set navideño 10", precio: "$20.000" },
+    { foto: "imagenes/11.jpeg", nombre: "Set navideño 11", precio: "$20.000" },
+    { foto: "imagenes/12.jpeg", nombre: "Set navideño 12", precio: "$20.000" },
+    { foto: "imagenes/13.jpeg", nombre: "Set navideño 13", precio: "$25.000" },
+    { foto: "imagenes/14.jpeg", nombre: "Set navideño 14", precio: "$20.000" },
+    { foto: "imagenes/15.jpeg", nombre: "Set navideño 15", precio: "$20.000" },
+    { foto: "imagenes/16.jpeg", nombre: "Set navideño 16", precio: "$25.000" },
+    { foto: "imagenes/17.jpeg", nombre: "Set navideño 17", precio: "$20.000" },
+    { foto: "imagenes/18.jpeg", nombre: "Set navideño 18", precio: "$20.000" },
+    { foto: "imagenes/19.jpeg", nombre: "Set navideño 19", precio: "$20.000" },
+    { foto: "imagenes/20.jpeg", nombre: "Set navideño 20", precio: "$20.000" },
+    { foto: "imagenes/21.jpeg", nombre: "Set navideño 21", precio: "$20.000" },
+    { foto: "imagenes/22.jpeg", nombre: "Set navideño 22", precio: "$20.000" },
+    { foto: "imagenes/23.jpeg", nombre: "Set navideño 23", precio: "$25.000" },
+    { foto: "imagenes/24.jpeg", nombre: "Set navideño 24", precio: "$20.000" },
+    { foto: "imagenes/25.jpeg", nombre: "Set navideño 25", precio: "$20.000" },
+    { foto: "imagenes/26.jpeg", nombre: "Set navideño 26", precio: "$20.000" },
+    { foto: "imagenes/27.jpeg", nombre: "Set navideño 27", precio: "$20.000" },
+    { foto: "imagenes/28.jpeg", nombre: "Set navideño 28", precio: "$20.000" },
+];
+
+  const grid = document.getElementById('productGrid');
+  productos.forEach((p, i) => {
+    const card = document.createElement('article');
+    card.className = 'product-card';
+    card.innerHTML = `
+      <div class="photo-slot">
+        <img src="${p.foto}" alt="${p.nombre}" onerror="this.parentElement.style.background='#f9e4ea'; this.remove();">
+      </div>
+      <p class="p-num">Diseño ${i+1}</p>
+      <h3>${p.nombre}</h3>
+      <p class="p-price">${p.precio}</p>
+    `;
+    grid.appendChild(card);
+  });
+</script>
+
+</body>
+</html>
